@@ -61,13 +61,10 @@ module Maxwell
 
     def build_csv
       CSV.generate do |csv|
-        header = %w[回数]
-        header += (1..@number).to_a
-
+        header = (0..(@number - 1)).map { |index| human_name(index) }
         csv << header
 
-        @humans.map { |human| human.record.records }.transpose.each_with_index do |result, index|
-          result.unshift(index)
+        @humans.map { |human| human.record.records }.transpose.each do |result|
           csv << result
         end
       end
@@ -95,6 +92,11 @@ module Maxwell
 
     def unselect_humans(out_index, in_index)
       @humans.select.with_index { |_, index| ![out_index, in_index].include?(index) }
+    end
+
+    def human_name(index)
+      alphabets = ('A'..'Z').to_a
+      alphabets[index]
     end
   end
 end

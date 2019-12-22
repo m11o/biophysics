@@ -1,10 +1,13 @@
 require './lib/maxwell'
+require 'fileutils'
 
 group = Maxwell::Group.build
 100.times { group.trial }
 
-group.humans.each do |human|
-  print human.inspect, "\n"
-  print human.record.records, "\n"
-  print human.record.records.count, "\n"
+FileUtils.mkdir_p('./tmp')
+now = Time.now
+File.open("tmp/result#{now.strftime('%Y%m%d%H%M%S')}.csv", 'w+') do |file|
+  file.puts group.build_csv
 end
+
+

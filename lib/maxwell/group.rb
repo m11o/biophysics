@@ -1,6 +1,8 @@
 require_relative 'human'
 require_relative 'dice'
 
+require 'csv'
+
 module Maxwell
   class Group
     attr_accessor :humans
@@ -55,6 +57,20 @@ module Maxwell
       end
 
       current_top_human!
+    end
+
+    def build_csv
+      CSV.generate do |csv|
+        header = %w[回数]
+        header += (1..@number).to_a
+
+        csv << header
+
+        @humans.map { |human| human.record.records }.transpose.each_with_index do |result, index|
+          result.unshift(index)
+          csv << result
+        end
+      end
     end
 
     def current_top_human!

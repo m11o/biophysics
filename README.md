@@ -80,6 +80,11 @@ $ docker-compose run --rm biophysics bash
 $ ruby main.rb
 ```
 
+## 実行後
+
+1. `参加人数` `コインの枚数` `試行回数` などを選択し、実行。
+2. 実行後には、 `tmp/` 配下に `result#{日時}.csv` というファイルが作成されるので、ExcelやGoogleスプレッドシート などに取り込んで使用ください。
+
 ## Contributes
 
 1. 本リポジトリをfork

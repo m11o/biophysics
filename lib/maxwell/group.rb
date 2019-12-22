@@ -92,7 +92,7 @@ module Maxwell
       @number = number
       @all_coins_count = all_coins_count
       @humans = []
-      @dice = Dice.instance
+      @dice = Dice.new(@number)
     end
 
     def unselect_humans(out_index, in_index)

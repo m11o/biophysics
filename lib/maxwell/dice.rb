@@ -1,13 +1,11 @@
-require 'singleton'
-
 module Maxwell
   class Dice
-    include Singleton
-
-    ROLL_OF_THE_DICE = (0..5).to_a.freeze
+    def initialize(surface_count)
+      @surface_count = surface_count
+    end
 
     def shake
-      ROLL_OF_THE_DICE.sample
+      (0..(@surface_count - 1)).to_a.sample
     end
   end
 end

@@ -67,6 +67,11 @@ module Maxwell
         @humans.map { |human| human.record.records }.transpose.each do |result|
           csv << result
         end
+        top_counts, zero_counts = @humans.map { |human| [human.record.top_count, human.record.zero_count] }.transpose
+        csv << %w[TOP]
+        csv << top_counts
+        csv << %w[ZERO]
+        csv << zero_counts
       end
     end
 
